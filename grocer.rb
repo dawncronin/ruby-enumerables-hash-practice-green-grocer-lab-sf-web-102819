@@ -28,7 +28,10 @@ def apply_coupons(cart, coupons)
     mod_cart[name][:count] -= hash[:num]
     couponname = "#{name} W/COUPON"
     price = (hash[:cost]/1.0)/hash[:num]
+    if mod_cart[couponname] == nil
     mod_cart[couponname] = {:price => price, :clearance => cart[name][:clearance], :count => hash[:num]}
+  else mod_cart[couponname][:count] += hash[:num]
+  end
 end
 return mod_cart
 end
